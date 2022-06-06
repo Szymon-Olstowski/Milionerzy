@@ -14,3 +14,5 @@ Wymagania:
 -Python od 3.8.0<x                   
 -zaistalować pakiet tkinter
 Aby uruchomić pytania należy kliknąć w dowolny przycisk po uruchomieniu projektu
+Dodano do projektu system muzyczny z teleturnieru.
+          
