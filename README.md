@@ -1,5 +1,5 @@
 # Milionerzy
-Prosta wersja Milionerzy bez kół ratunkowych
+Prosta wersja Milionerzy z kołami ratunkowymi
 <br>
 Pytania są wyświetlane w losowej kolejności, a program losuje 12 pytań z 53 pulą pytań.
 <btr>
