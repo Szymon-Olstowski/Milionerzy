@@ -1,9 +1,11 @@
 import tkinter as tki
 import random
 import sqlite3
+import pygame,time
 conn = sqlite3.connect('coin.db')
 c = conn.cursor()
 tab=[]
+pygame.mixer.init()
 class licz:
     meh = 0
 class pyt:
@@ -39,6 +41,9 @@ def spr1(ilosc,numer):
     else:
         numer=random.randint(1,ilosc[0]-1)
         spr(numer,ilosc)
+def muzyka():
+        pygame.mixer.music.queue("loop_muzyka.mp3",loops=99)
+
 def function(self):
     c.execute("SELECT COUNT() FROM Pytania")
     ilosc=c.fetchone()
@@ -51,11 +56,16 @@ def function(self):
         odp_p=c.fetchone()
         if odp_p[0]==self:
             print("Prawidłowa odpowiedz")
+            #prawidłowa odp
             if len(tab)==12: #zmiana gdy ilosć pytań powyżej 12 to if len(tab)==12
+                pygame.mixer.music.load('1milon_zł.mp3')
+                pygame.mixer.music.play()
                 label=test.a
                 label.config(text="Wygraleś 1000000 zł")
                 print("Koniec pytań")
             else:
+                pygame.mixer.music.load('poprawna_odp.mp3')
+                pygame.mixer.music.play()
                 numer=random.randint(1,ilosc[0]-1)
                 spr(numer,ilosc)
                 p_nr=len(tab)
@@ -65,8 +75,15 @@ def function(self):
                 kwota.k=str(nr_p[1])
                 if spr_gwarant=="tak":
                     gwarant.g=str(nr_p[1])
+                #następne pytanie
+                pygame.mixer.music.queue('next_pytanie.mp3')
+                time.sleep(5)
                 click_action()
+                muzyka()
         else:
+            #błędna odpowiedź
+            pygame.mixer.music.load('błedna_odp.mp3')
+            pygame.mixer.music.play()
             print("Nieprawdłowa odpowiedź. Prawidłowa odpowiedź to: ",odp_p)
             label=test.a
             wygrana=gwarant.g
