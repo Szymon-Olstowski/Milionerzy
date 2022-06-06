@@ -3,6 +3,10 @@ import tkinter as tki
 from tkinter import Label
 import os
 import ab, random
+import pygame
+pygame.mixer.init()
+pygame.mixer.music.load('czołówka.mp3')
+pygame.mixer.music.play()
 class kolo:
     k1=0
     k2=0
