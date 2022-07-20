@@ -19,7 +19,11 @@ class kwota:
 class gwarant:
     g=0
 def pyt_tres(numer):
+    k_pyt=len(tab)
+    #modifikowanie
+    #c.execute(f"SELECT * FROM a{k_pyt} WHERE nr_pyt=?",(numer,))#
     c.execute("SELECT * FROM Pytania WHERE nr_pyt=?",(numer,))
+    print("Pytanie Test: ",k_pyt)
     wyniki=c.fetchone()
     return wyniki
 def spr(numer,ilosc):
@@ -93,6 +97,7 @@ def function(self):
     else:
         numer=random.randint(1,ilosc[0]-1)
         tab.append(numer)
+        
         pyt.nrpyt=0
         pyt.nrpyt=numer
         print("muha",tab)
@@ -104,6 +109,7 @@ def function(self):
         nr_p=c.fetchone()
         kwota.k=str(nr_p[1])
         popup_window()
+        muzyka()
 def click_action():
     label=test.a
     numer=pyt.nrpyt
