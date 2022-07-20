@@ -10,6 +10,7 @@ class licz:
     meh = 0
 class pyt:
     nrpyt= 0
+    k_pyt=1
 class window:
     win=0
 class test:
@@ -22,8 +23,8 @@ def pyt_tres(numer):
     k_pyt=len(tab)
     #modifikowanie
     #c.execute(f"SELECT * FROM a{k_pyt} WHERE nr_pyt=?",(numer,))#
-    c.execute("SELECT * FROM Pytania WHERE nr_pyt=?",(numer,))
-    print("Pytanie Test: ",k_pyt)
+    c.execute(f"SELECT * FROM a{pyt.k_pyt} WHERE nr_pyt=?",(numer,))
+    print("Pytanie Test: ",pyt.k_pyt)
     wyniki=c.fetchone()
     return wyniki
 def spr(numer,ilosc):
@@ -49,18 +50,20 @@ def muzyka():
         pygame.mixer.music.queue("loop_muzyka.mp3",loops=99)
 
 def function(self):
-    c.execute("SELECT COUNT() FROM Pytania")
+    k_pyt=len(tab)
+    c.execute(f"SELECT COUNT() FROM a{pyt.k_pyt}")
     ilosc=c.fetchone()
     print(self)
     if tab:
         print(len(tab))
         numer=pyt.nrpyt
         print("Pytanie ",numer)
-        c.execute("SELECT p_odp FROM Pytania WHERE nr_pyt=?",(numer,))
+        c.execute(f"SELECT p_odp FROM a{pyt.k_pyt} WHERE nr_pyt=?",(numer,))
         odp_p=c.fetchone()
         if odp_p[0]==self:
             print("Prawidłowa odpowiedz")
             #prawidłowa odp
+            pyt.k_pyt=pyt.k_pyt+1
             if len(tab)==12: #zmiana gdy ilosć pytań powyżej 12 to if len(tab)==12
                 pygame.mixer.music.load('1milon_zł.mp3')
                 pygame.mixer.music.play()
@@ -115,7 +118,7 @@ def click_action():
     numer=pyt.nrpyt
     pytanie= pyt_tres(numer)
     kwoty=kwota.k
-    label.config(text="Pytanie za "+kwoty+" zł\n"+pytanie[1]+" A: "+pytanie[2]+" B: "+pytanie[3]+" C: "+pytanie[4]+" D: "+pytanie[5])
+    label.config(text=f"Pytanie {pyt.k_pyt} za "+kwoty+" zł\n"+pytanie[1]+" A: "+pytanie[2]+" B: "+pytanie[3]+" C: "+pytanie[4]+" D: "+pytanie[5])
 def popup_window():
     okno=window.win
     label = tki.Label(okno, text="MUCHA")
@@ -124,6 +127,6 @@ def popup_window():
     click_action()
 def procent_50():
     numer=pyt.nrpyt
-    c.execute("SELECT p_odp FROM Pytania WHERE nr_pyt=?",(numer,))
+    c.execute(f"SELECT p_odp FROM a{pyt.k_pyt} WHERE nr_pyt=?",(numer,))
     odp_p=c.fetchone()
     return odp_p[0]
