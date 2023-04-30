@@ -1,7 +1,7 @@
 # Milionerzy
 Prosta wersja Milionerzy z kołami ratunkowymi
 <br>
-Pytania są wyświetlane w losowej kolejności, a każdy z próg posiada 20 pytań. Łącznie wynosi 240 pytań.
+Pytania są wyświetlane w losowej kolejności, a każdy z próg posiada 34 pytań. Łącznie wynosi 440 pytań.
 <br>
  Kwoty za każde pytanie:
 <br>  
@@ -15,4 +15,4 @@ Wymagania:
 -zaistalować pakiet tkinter
 Aby uruchomić pytania należy kliknąć w dowolny przycisk po uruchomieniu projektu
 Dodano do projektu system muzyczny z teleturnieru.
-          
+Pytania od 21-34 zostały wygerenowane przez chata gpt.          
